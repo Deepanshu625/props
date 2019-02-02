@@ -10,12 +10,14 @@ from django.conf import settings
 import openpyxl
 from openpyxl.writer.excel import save_virtual_workbook
 
+API_KEY = "AIzaSyCqjCZP5ljNyRYyLXv-BfJrP6pkHb2YoAQ"
+
 def index(request):
     return HttpResponse("Hello, world. You're at props")
 
 def get_location(address):
     add = "+".join(address.split(" "))
-    response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + add + '&key=AIzaSyCqjCZP5ljNyRYyLXv-BfJrP6pkHb2YoAQ')
+    response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + add + '&key='+API_KEY)
     json_response = json.loads(response.text)
     if json_response["status"] == "OK":
         location = json_response["result"][0]["geometry"]["location"]
