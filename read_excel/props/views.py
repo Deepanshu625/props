@@ -20,7 +20,7 @@ def get_location(address):
     response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + add + '&key='+API_KEY)
     json_response = json.loads(response.text)
     if json_response["status"] == "OK":
-        location = json_response["result"][0]["geometry"]["location"]
+        location = json_response["results"][0]["geometry"]["location"]
     else:
         location = {
                     "lat": "000",
